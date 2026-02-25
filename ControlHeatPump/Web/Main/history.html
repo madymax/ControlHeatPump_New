@@ -294,8 +294,8 @@ function init_chart() {
 	var dte = new Date();
 	var dts = new Date(dte.getTime()+dte.getTimezoneOffset()*60*1000 - preload_days*24*60*60*1000);
 	if(dts.getFullYear() != dte.getFullYear()) dts = new Date(dte.getFullYear(), 0, 1, 12);
-	document.getElementById("StartDate").value = dts.toISOString().substring(0, 10);
-	document.getElementById("EndDate").value = dte.toISOString().substring(0, 10);
+	document.getElementById("StartDate").value = dts.getFullYear() + '-' + ('0' + (dts.getMonth() + 1)).slice(-2) + '-' + ('0' + dts.getDate()).slice(-2);
+	document.getElementById("EndDate").value = dte.getFullYear() + '-' + ('0' + (dte.getMonth() + 1)).slice(-2) + '-' + ('0' + dte.getDate()).slice(-2);
 	var dh = $.get(urlhead + file_head + '_head.csv', function(data) { // format: <axis char><field1 name>;<axis char><field2 name>;... 
 		var arr = data.split(csv_delim);
 		for(var i = 0; i < arr.length; i++) {
